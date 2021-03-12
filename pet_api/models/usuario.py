@@ -9,4 +9,4 @@ class Usuario(db.Model):
     login = db.Column(db.String(15),nullable=False)
 
     def serialize(self):
-        return {'id':self.id, 'login':self.login, 'nome':self.nome}
+        return {'id':self.id, 'nome':self.nome,'senha':self.senha,'login':self.login }
