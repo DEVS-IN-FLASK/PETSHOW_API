@@ -10,4 +10,4 @@ class usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(15))
     senha = db.Column(db.String(20))
-    login = db.Column(db.String(15))
+    login = db.Column(db.String(15))  
