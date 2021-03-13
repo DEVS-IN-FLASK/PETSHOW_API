@@ -23,8 +23,7 @@ def novo():
             porcentagem=novo_produto.get('porcentagem'),
             preco_custo=novo_produto.get('preco_custo'),
             preco_venda=novo_produto.get('preco_venda'),
-            foto=novo_produto.get('foto'),
-            preco_custo=novo_produto.get('preco_custo'),
+            foto=novo_produto.get('foto')
             )
         db.session.add(p)
         db.session.commit()

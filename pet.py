@@ -13,6 +13,9 @@ def create_app():
     from usuarios import usuarios_app
     app.register_blueprint(usuarios_app)
 
+    from produtos import produtos_app
+    app.register_blueprint(produtos_app)
+
     db.init_app(app)
     with app.app_context():
         db.create_all()
@@ -22,5 +25,8 @@ def create_app():
         users = requests.get("http://localhost:5000/usuarios/").json()
         return render_template('index.html', usuario = users)
      
+        prods = requests.get("http://localhost:5000/produtos/").json()
+        return render_template('index.html', produto = prods)
+        
     return app  
    
