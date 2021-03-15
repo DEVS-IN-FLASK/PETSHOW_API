@@ -2,27 +2,6 @@ from pet import db
 
 class Produto(db.Model):
 
-    __tablename__ = 'tamanho'
-    id_tamanho = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
-    descricao = db.Column(db.String(15))
-
-    def serialize(self):
-        return {'id_tamanho':self.id_tamanho, 'descricao':self.descricao}
-
-    __tablename__ = 'marca'
-    id_marca = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
-    descricao = db.Column(db.String(40))
-    
-    def serialize(self):
-        return {'id_marca':self.id_marca, 'descricao':self.descricao}
-
-    __tablename__ = 'tipo'
-    id_tipo = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
-    descricao = db.Column(db.String(15))
-
-    def serialize(self):
-        return {'id_tipo':self.id_tipo, 'descricao':self.descricao}
-
     __tablename__="produtos"
     id_produto = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
     descricao = db.Column(db.String(255),nullable=False)
