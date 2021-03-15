@@ -1,6 +1,8 @@
+from models import tamanho
+from models.tamanho import Tamanho
 from flask import Blueprint, jsonify, request
 from sqlalchemy.exc import IntegrityError
-from models import Produto
+from models import Produto, Tipo, Tamanho, Marca
 from pet import db
 
 produtos_app = Blueprint('produtos', __name__,url_prefix='/produtos')
@@ -17,14 +19,11 @@ def novo():
     if not novo_produto:
         return jsonify({'erro':'Os dados do produto não foram inseridos'})
     try:
-        p = Produto(descricao=novo_produto.get('descricao'),
-            modelo=novo_produto.get('modelo'), 
-            cod_barras=novo_produto.get('cod_barras'),
-            porcentagem=novo_produto.get('porcentagem'),
-            preco_custo=novo_produto.get('preco_custo'),
-            preco_venda=novo_produto.get('preco_venda'),
-            foto=novo_produto.get('foto')
-            )
+        p = Produto(descricao=novo_produto.get('descricao'),modelo=novo_produto.get('modelo'), cod_barras=novo_produto.get('cod_barras'), porcentagem=novo_produto.get('porcentagem'), preco_custo=novo_produto.get('preco_custo'), preco_venda=novo_produto.get('preco_venda'), foto=novo_produto.get('foto'))
+        Tamanho(descricao=novo_produto.get('tamanho'))
+        Tipo(descricao=novo_produto.get('tipo'))
+        Marca(descricao=novo_produto.get('marca'))
+
         db.session.add(p)
         db.session.commit()
         return jsonify(p.serialize())
