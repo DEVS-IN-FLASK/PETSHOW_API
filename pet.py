@@ -22,10 +22,10 @@ def create_app():
     
     @app.route("/")
     def all():
-        users = requests.get("http://localhost:5000/usuarios/").json()
+        users = requests.get("https://petshow-api.herokuapp.com/usuarios/").json()
         return render_template('index.html', usuario = users)
      
-        prods = requests.get("http://localhost:5000/produtos/").json()
+        prods = requests.get("https://petshow-api.herokuapp.com/produtos/").json()
         return render_template('index.html', produto = prods)
         
     return app  
