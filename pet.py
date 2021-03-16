@@ -22,10 +22,10 @@ def create_app():
     
     @app.route("/")
     def all():
-        users = requests.get("https://localhost:5000/usuarios/").json()
+        users = requests.get("http://127.0.0.1:5000/usuarios/").json()
         return render_template('index.html', usuario = users)
      
-        prods = requests.get("https://localhost:5000/produtos/").json()
+        prods = requests.get("http://127.0.0.1:5000/produtos/").json()
         return render_template('index.html', produto = prods)
         
     return app  
