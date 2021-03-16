@@ -7,7 +7,7 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+psycopg2://othtixrbfjlhlq:b9a8949c6208ca7d6203efe5e05049f1bfa71d1ba040ed94a23b28bdd5291679@ec2-54-145-102-149.compute-1.amazonaws.com:5432/d6f5ivqn159sv1'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+psycopg2://nuenrexvutummr:e8af86aaf4e99a011914e701532b0fc9bb7b9588b34158cce47e2e921f2ed0c7@ec2-52-21-252-142.compute-1.amazonaws.com:5432/dse9kl9ve57mv'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     from usuarios import usuarios_app
