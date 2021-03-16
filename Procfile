@@ -1,1 +1,1 @@
-web:python pet.py
+web:
