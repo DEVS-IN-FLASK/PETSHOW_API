@@ -21,4 +21,4 @@ class Produto(db.Model):
     def serialize(self):
         return {'id_produto':self.id_produto,'descricao':self.descricao,'modelo':self.modelo,'cod_barras':self.cod_barras, 
         'porcentagem':self.porcentagem,'preco_custo':self.preco_custo,'preco_venda':self.preco_venda,'foto':self.foto,
-        'tamanho':self.tamanho,'marca':self.marca,'tipo':self.tipo }
+        'tamanho':self.tamanho,'marca':self.marca,'tipo':self.tipo}
