@@ -1,1 +1,1 @@
-web:pet.py flask run
+web:pet.py flaskrun
