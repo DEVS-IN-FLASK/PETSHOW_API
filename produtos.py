@@ -1,14 +1,13 @@
 from flask import Blueprint, jsonify, request
 from sqlalchemy.exc import IntegrityError
-from sqlalchemy.orm import sessionmaker
-from models import Produto, Tamanho, Animal, Marca, marca
+from models import Produto
 from pet import db
 
 produtos_app = Blueprint('produtos', __name__,url_prefix='/produtos')
 
 @produtos_app.route('/')
 def listar():
-    prod = Produto.query.all() + Tamanho.query.all() + Animal.query.all() + Marca.query.all()
+    prod = Produto.query.all()
 #    return jsonify([{"id":1, "nome":"Gerson"}])
     return jsonify([p.serialize() for p in prod])
 
@@ -21,8 +20,9 @@ def novo():
 
         p = Produto(descricao=novo_produto.get('descricao'),modelo=novo_produto.get('modelo'),
             cod_barras=novo_produto.get('cod_barras'), porcentagem=novo_produto.get('porcentagem'),
-            preco_custo=novo_produto.get('preco_custo'), preco_venda=novo_produto.get('preco_venda'),foto=novo_produto.get('foto'))
-#            Marca(descricao=novo_produto.get('marca'))
+            preco_custo=novo_produto.get('preco_custo'), preco_venda=novo_produto.get('preco_venda'),
+            foto=novo_produto.get('foto'),marca=novo_produto.get('marca'),animal=novo_produto.get('animal'),tamanho=novo_produto.get('tamanho'))
+
 
         db.session.add(p)  
         db.session.commit()
