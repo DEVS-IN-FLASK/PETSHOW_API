@@ -1,4 +1,6 @@
 from petshow_api import db
+from .pedido import Pedido
+from .produto import Produto
 
 class Pedido_Produto(db.Model):
 
@@ -7,10 +9,13 @@ class Pedido_Produto(db.Model):
     # id adicionado apenas para o programa rodar, ão existe pois é uma tabela de relacionamento, situação a analisar
     id = db.Column(db.Integer, primary_key=True,nullable=True,autoincrement=True)
 
+    pedido_id = db.Column(db.Integer, db.ForeignKey(Pedido.id), nullable = False)
+    pedido = db.relationship("Pessoa")
 
-
-    pedido_id = db.ForeignKey('Pedido',null=True)
-    produto_id = db.ForeignKey('Produto',null=True)
+    produto_id = db.Column(db.Integer, db.ForeignKey(Produto.id), nullable = False)
+    produto_id = db.relationship("Produto")
+#    pedido_id = db.ForeignKey('Pedido',null=True)
+#    produto_id = db.ForeignKey('Produto',null=True)
     quantidade = db.Column(db.Integer)
     preco = db.Column(db.Float)
     total = db.Column(db.Float)

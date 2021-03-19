@@ -1,4 +1,5 @@
 from petshow_api import db
+from flask import url_for
 
 class Cliente(db.Model):
 
@@ -7,7 +8,8 @@ class Cliente(db.Model):
     nome = db.Column(db.String(45))
     email = db.Column(db.String(60))
     cpf = db.Column(db.String(11))
-    endereco_id = db.ForeignKey('endereco_id',null=True)
+    endereco = db.relationship('Endereco')
+    endereco_id = db.Column(db.Integer, db.ForeignKey('enderecos.id'), nullable=False)
   
     def serialize(self):
-        return {'id':self.id, 'nome':self.nome, 'email':self.email, 'cpf':self.cpf, 'endereco_id':self.endereco_id}
+        return {'id':self.id, 'nome':self.nome, 'email':self.email, 'cpf':self.cpf, 'endereco':self.endereco.serialize()}

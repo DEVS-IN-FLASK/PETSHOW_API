@@ -14,13 +14,9 @@ class Produto(db.Model):
     preco_venda = db.Column(db.Float)
     foto = db.Column(db.Integer)
     marca_id = db.Column(db.Integer, db.ForeignKey('marca.id'),nullable=False)
-    marca = db.relationship('Marca', backref=db.backref('produto', lazy=True))
-
     animal_id = db.Column(db.Integer, db.ForeignKey('animal.id'),nullable=False)
-    animal = db.relationship('Animal', backref=db.backref('produto', lazy=True))
-
     tamanho_id = db.Column(db.Integer, db.ForeignKey('tamanho.id'),nullable=False)
-    tamanho = db.relationship('Tamanho', backref=db.backref('produto', lazy=True))
+    
    
     def serialize(self):
         return {'id':self.id,'descricao':self.descricao,'modelo':self.modelo,

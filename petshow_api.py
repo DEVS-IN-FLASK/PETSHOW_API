@@ -17,8 +17,8 @@ def create_app():
     from produtos import produtos_app
     app.register_blueprint(produtos_app)
 
-    from clientes import clientes_app
-    app.register_blueprint(clientes_app)
+ #   from clientes import clientes_app
+ #   app.register_blueprint(clientes_app)
 
     db.init_app(app)
     with app.app_context():
@@ -32,8 +32,8 @@ def create_app():
         prods = requests.get("http://127.0.0.1:5000/produtos/").json()
         return render_template('index.html', produto = prods)
 
-        cli = requests.get("http://127.0.0.1:5000/clientes").json()
-        return render_template('index.html', cliente = cli)
+    #    cli = requests.get("http://127.0.0.1:5000/clientes").json()
+     #   return render_template('index.html', cliente = cli)
         
     return app  
    
