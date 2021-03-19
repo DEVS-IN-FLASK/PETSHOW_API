@@ -1,4 +1,4 @@
-from pet import db
+from petshow_api import db
 
 class Usuario(db.Model):
 

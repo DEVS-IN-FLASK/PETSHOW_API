@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from sqlalchemy.exc import IntegrityError
 from models import Produto, Marca, Tamanho, Animal
-from pet import db
+from petshow_api import db
 
 produtos_app = Blueprint('produtos', __name__,url_prefix='/produtos')
 
