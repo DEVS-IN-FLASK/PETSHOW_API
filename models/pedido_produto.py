@@ -4,6 +4,11 @@ class Pedido_Produto(db.Model):
 
     __tablename__ = 'pedido_produto'
 
+    # id adicionado apenas para o programa rodar, ão existe pois é uma tabela de relacionamento, situação a analisar
+    id = db.Column(db.Integer, primary_key=True,nullable=True,autoincrement=True)
+
+
+
     pedido_id = db.ForeignKey('Pedido',null=True)
     produto_id = db.ForeignKey('Produto',null=True)
     quantidade = db.Column(db.Integer)

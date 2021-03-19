@@ -5,7 +5,7 @@ class Endereco(db.Model):
     __tablename__ = 'endereco'
     id = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
     rua = db.Column(db.String(15))
-    cep = db.Column(db.Bigint(8))
+    cep = db.Column(db.String(8))
     bairro = db.Column(db.String(45))
     cidade = db.Column(db.String(45))
     uf = db.Column(db.String(2))

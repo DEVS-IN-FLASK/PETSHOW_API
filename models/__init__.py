@@ -3,3 +3,8 @@ from .produto import Produto
 from .tamanho import Tamanho
 from .animal import Animal
 from .marca import Marca
+from .cliente import Cliente
+from .endereco import Endereco
+from .pedido_produto import Pedido_Produto
+from .pedido import Pedido
+from .situacao import Situacao

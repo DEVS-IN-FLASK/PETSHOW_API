@@ -6,7 +6,7 @@ class Cliente(db.Model):
     id = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
     nome = db.Column(db.String(45))
     email = db.Column(db.String(60))
-    cpf = db.Column(db.Bigint(11))
+    cpf = db.Column(db.String(11))
     endereco_id = db.ForeignKey('endereco_id',null=True)
   
     def serialize(self):

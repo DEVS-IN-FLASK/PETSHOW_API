@@ -1,4 +1,6 @@
 from petshow_api import db
+from sqlalchemy import ForeignKey, Boolean 
+from sqlalchemy.orm import relationship, backref 
 
 class Produto(db.Model):
 
@@ -10,11 +12,17 @@ class Produto(db.Model):
     porcentagem = db.Column(db.Float)
     preco_custo = db.Column(db.Float)
     preco_venda = db.Column(db.Float)
-    foto = db.Column(db.Binary)
-    marca = db.relationship('Marca')
-    animal = db.relationship('Animal')
-    tamanho = db.relationship('Tamanho')
+    foto = db.Column(db.Integer)
+    marca_id = db.Column(db.Integer, db.ForeignKey('marca.id'),nullable=False)
+    marca = db.relationship('Marca', backref=db.backref('produto', lazy=True))
 
+    animal_id = db.Column(db.Integer, db.ForeignKey('animal.id'),nullable=False)
+    animal = db.relationship('Animal', backref=db.backref('produto', lazy=True))
+
+    tamanho_id = db.Column(db.Integer, db.ForeignKey('tamanho.id'),nullable=False)
+    tamanho = db.relationship('Tamanho', backref=db.backref('produto', lazy=True))
    
     def serialize(self):
-        return {'id':self.id,'descricao':self.descricao,'modelo':self.modelo,'cod_barras':self.cod_barras,'porcentagem':self.porcentagem,'preco_custo':self.preco_custo,'preco_venda':self.preco_venda,'foto':self.foto,'marca':self.marca,'animal':self.animal,'tamanho':self.tamanho}
+        return {'id':self.id,'descricao':self.descricao,'modelo':self.modelo,
+        'cod_barras':self.cod_barras,'porcentagem':self.porcentagem,'preco_custo':self.preco_custo,
+        'preco_venda':self.preco_venda,'foto':self.foto,'marca':self.marca,'animal':self.animal,'tamanho':self.tamanho}
