@@ -22,6 +22,7 @@ def novo():
         p = Produto(descricao=novo_produto.get('descricao'),modelo=novo_produto.get('modelo'),
             cod_barras=novo_produto.get('cod_barras'), porcentagem=novo_produto.get('porcentagem'),
             preco_custo=novo_produto.get('preco_custo'), preco_venda=novo_produto.get('preco_venda'),foto=novo_produto.get('foto'))
+            
 
 #        p.append(m,a,t)
         db.session.add(p)  
