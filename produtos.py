@@ -26,8 +26,7 @@ def novo():
 
         m = Marca(id=novo_produto.get('id'),marca=novo_produto.get('marca'))
             
-#        p.append(m)
-        db.session.add(p,m)  
+#                db.session.add(p,m)  
         db.session.commit()
         return jsonify(p.serialize())
     except IntegrityError:
