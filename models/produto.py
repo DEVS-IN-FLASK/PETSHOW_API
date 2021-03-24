@@ -1,3 +1,4 @@
+from models.marca import Marca
 from petshow_api import db
 from sqlalchemy import ForeignKey, Boolean 
 from sqlalchemy.orm import relationship, backref
@@ -14,6 +15,8 @@ class Produto(db.Model):
     preco_custo = db.Column(db.Float)
     preco_venda = db.Column(db.Float)
     foto = db.Column(db.Binary)
+#    marcas_id = db.Column(ForeignKey('marcas.id'), nullable=False)
+#    marca = relationship(Marca, lazy="joined", innerjoin=True)
 
 
 
