@@ -1,7 +1,6 @@
-from models.marca import Marca
 from flask import Blueprint, jsonify, request
 from sqlalchemy.exc import IntegrityError
-from models import Produto, Marca
+from models import Produto, Marca, Tamanho, Animal
 from petshow_api import db
 
 produtos_app = Blueprint('produtos', __name__,url_prefix='/produtos')
@@ -22,12 +21,19 @@ def novo():
 
         p = Produto(descricao=novo_produto.get('descricao'),modelo=novo_produto.get('modelo'),
             cod_barras=novo_produto.get('cod_barras'), porcentagem=novo_produto.get('porcentagem'),
-            preco_custo=novo_produto.get('preco_custo'), preco_venda=novo_produto.get('preco_venda'),foto=novo_produto.get('foto'),marcas_id=novo_produto.get('marcas_id'))
+            preco_custo=novo_produto.get('preco_custo'), preco_venda=novo_produto.get('preco_venda'),foto=novo_produto.get('foto'))     
 
+        
+        t = Tamanho(id=novo_produto.get('id'),tamanho=novo_produto.get('tamanho'))
+        a = Animal(id=novo_produto.get('id'),animal=novo_produto.get('animal'))
         m = Marca(id=novo_produto.get('id'),marca=novo_produto.get('marca'))
-            
-#        p.append(m)
-        db.session.add(p,m)  
+
+        
+        db.session.add(t)
+        db.session.add(a)    
+        db.session.add(m)
+        db.session.add(p)
+        
         db.session.commit()
         return jsonify(p.serialize())
     except IntegrityError:

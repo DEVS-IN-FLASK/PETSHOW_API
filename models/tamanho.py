@@ -2,11 +2,11 @@ from petshow_api import db
 
 class Tamanho(db.Model):
 
-    __tablename__ = 'tamanho'
+    __tablename__ = 'tamanhos'
     id = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
-    descricao = db.Column(db.String(40))
-#    produto_id = db.Column(db.Integer, db.ForeignKey('produto.id'))
+    tamanho = db.Column(db.String(40))
+
 
     
     def serialize(self):
-        return {'id':self.id, 'descricao':self.descricao}
+        return {'id':self.id, 'tamanho':self.tamanho}

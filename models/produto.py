@@ -14,12 +14,10 @@ class Produto(db.Model):
     preco_custo = db.Column(db.Float)
     preco_venda = db.Column(db.Float)
     foto = db.Column(db.Binary)
-#    marcas_id = db.ForeignKey('Marca',null=True)
-    marcas_id = db.Column(db.Integer, db.ForeignKey('marcas.id'),
-        nullable=False)
+
 
 
     def serialize(self):
         return {'id':self.id,'descricao':self.descricao,'modelo':self.modelo,'cod_barras':self.cod_barras, 
-        'porcentagem':self.porcentagem,'preco_custo':self.preco_custo,'preco_venda':self.preco_venda,'foto':self.foto,'marcas_id':self.marcas_id}
+        'porcentagem':self.porcentagem,'preco_custo':self.preco_custo,'preco_venda':self.preco_venda,'foto':self.foto}
 
