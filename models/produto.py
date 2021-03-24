@@ -1,7 +1,6 @@
-from models.marca import Marca
 from petshow_api import db
 from sqlalchemy import ForeignKey, Boolean 
-from sqlalchemy.orm import relationship, backref
+
 
 
 class Produto(db.Model):
@@ -10,7 +9,7 @@ class Produto(db.Model):
     id = db.Column(db.Integer, primary_key=True,nullable=True,autoincrement=True)
     descricao = db.Column(db.String(255),nullable=False)
     modelo = db.Column(db.String(45), nullable=False)
-    cod_barras = db.Column(db.Integer,nullable=False, unique=True)
+    cod_barras = db.Column(db.Integer,nullable=False)
     porcentagem = db.Column(db.Float)
     preco_custo = db.Column(db.Float)
     preco_venda = db.Column(db.Float)
