@@ -6,6 +6,5 @@ class Marca(db.Model):
     id = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
     marca = db.Column(db.String(40))
 
-  
     def serialize(self):
         return {'id':self.id, 'marca':self.marca}
