@@ -1,8 +1,6 @@
 from petshow_api import db
 from sqlalchemy import ForeignKey, Boolean 
 
-
-
 class Produto(db.Model):
 
     __tablename__="produtos"
@@ -16,8 +14,6 @@ class Produto(db.Model):
     foto = db.Column(db.Binary)
 #    marcas_id = db.Column(ForeignKey('marcas.id'), nullable=False)
 #    marca = relationship(Marca, lazy="joined", innerjoin=True)
-
-
 
     def serialize(self):
         return {'id':self.id,'descricao':self.descricao,'modelo':self.modelo,'cod_barras':self.cod_barras, 

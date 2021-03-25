@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 import requests
@@ -36,5 +37,6 @@ def create_app():
         cli = requests.get("http://127.0.0.1:5000/clientes").json()
         return render_template('index.html', cliente = cli)
         
-    return app  
+    return app
+
    
