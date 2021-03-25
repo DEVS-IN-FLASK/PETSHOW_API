@@ -1,2 +1,3 @@
 FLASK_APP=petshow_api.py
-FLASK_DEBUG=False
+FLASK_ENV=development flask run
+FLASK_DEBUG=1

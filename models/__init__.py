@@ -10,5 +10,5 @@ from .pedido_produto import Pedido_Produto
 from .pet import Pet
 from .situacao import Situacao
 from .telefone import Telefone
-from .animal import Animal
+
 
