@@ -7,7 +7,8 @@ clientes_app = Blueprint('clientes', __name__,url_prefix='/clientes')
 
 @clientes_app.route('/')
 def listar():
-    cli = Cliente.query.all() #Necessário incluir na listagem demais tabelas
+    cli = Cliente.query.all()
+#    cli.append.Endereco.query.all() #Necessário incluir na listagem demais tabelas
 
 @clientes_app.route('/',methods=['POST'])
 def novo():
@@ -28,7 +29,7 @@ def novo():
         db.session.add(c)
         
         db.session.commit()
-        return jsonify(c.serialize())
+        return jsonify(c.serialize()) #precisa incluir as demais tabelas no retorno
     except IntegrityError:
         db.session.rollback()
         return jsonify({'erro':"Cliente já cadastrado"}),400

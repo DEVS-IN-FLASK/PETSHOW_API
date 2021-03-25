@@ -1,1 +1,1 @@
-web:flask run
+web: petshow_api.py

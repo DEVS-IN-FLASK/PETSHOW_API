@@ -7,7 +7,7 @@ produtos_app = Blueprint('produtos', __name__,url_prefix='/produtos')
 
 @produtos_app.route('/')
 def listar():
-    prod = Produto.query.all() #Necessário incluir na listagem tamanho, animal e marca
+    prod = Produto.query.all()+Marca.query.all()+Tamanho.query.all()+Animal.query.all() #Necessário incluir na listagem tamanho, animal e marca
     return jsonify([p.serialize() for p in prod])
 
 @produtos_app.route('/',methods=['POST'])
