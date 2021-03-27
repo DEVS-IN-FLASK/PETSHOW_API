@@ -1,1 +1,1 @@
-web: gunicorn petshow_api:app
+web: uwsgi --socket 127.0.0.1:3031 --wsgi-file petshow_api.py --callable app

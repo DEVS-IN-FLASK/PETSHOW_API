@@ -8,7 +8,6 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    serve(app, host='0.0.0.0', port=8080)
 
 #    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///petdb.sqlite'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:819246@localhost:5432/petdb'
@@ -32,17 +31,18 @@ def create_app():
     
     def all():
         
-        users = requests.get("http://0.0.0.0:8080/usuarios/").json()
+        users = requests.get("http://127.0.0.1:5000/usuarios/").json()
         return render_template('index.html', usuario = users)
      
-        prods = requests.get("http://0.0.0.0:8080/produtos/").json()
+        prods = requests.get("http://127.0.0.1:5000/produtos/").json()
         return render_template('index.html', produto = prods)
 
-        cli = requests.get("http://0.0.0.0:8080/clientes").json()
+        cli = requests.get("http://127.0.0.1:5000/clientes").json()
         return render_template('index.html', cliente = cli)
 
-    
         
     return app
+    
+
 
      
