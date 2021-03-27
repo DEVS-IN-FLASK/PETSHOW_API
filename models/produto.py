@@ -9,7 +9,7 @@ class Produto(db.Model):
     id = db.Column(db.Integer, primary_key=True,nullable=True,autoincrement=True)
     descricao = db.Column(db.String(255),nullable=False)
     modelo = db.Column(db.String(45), nullable=False)
-    cod_barras = db.Column(db.Integer,nullable=False)
+    cod_barras = db.Column(db.Integer,unique=True, nullable=False)
     porcentagem = db.Column(db.Float)
     preco_custo = db.Column(db.Float)
     preco_venda = db.Column(db.Float)
