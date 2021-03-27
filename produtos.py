@@ -7,7 +7,7 @@ produtos_app = Blueprint('produtos', __name__,url_prefix='/produtos')
 
 @produtos_app.route('/')
 def listar():
-    prod = Produto.query.all()+Marca.query.all()+Tamanho.query.all()+Animal.query.all() #Necessário incluir na listagem tamanho, animal e marca
+    prod = Produto.query.all()
     return jsonify([p.serialize() for p in prod])
 
 @produtos_app.route('/',methods=['POST'])
@@ -17,17 +17,17 @@ def novo():
         return jsonify({'erro':'Os dados do produto não foram inseridos'})
     try:
         
-        t = Tamanho(id=novo_produto.get('id'),tamanho=novo_produto.get('tamanho'))
-        a = Animal(id=novo_produto.get('id'),animal=novo_produto.get('animal'))
-        m = Marca(id=novo_produto.get('id'),marca=novo_produto.get('marca'))
+        t = Tamanho(tamanho=novo_produto.get('tamanho'))
+        a = Animal(animal=novo_produto.get('animal'))
+        m = Marca(marca=novo_produto.get('marca'))
 
         p = Produto(descricao=novo_produto.get('descricao'),modelo=novo_produto.get('modelo'),
         cod_barras=novo_produto.get('cod_barras'), porcentagem=novo_produto.get('porcentagem'),
-        preco_custo=novo_produto.get('preco_custo'), preco_venda=novo_produto.get('preco_venda'),foto=novo_produto.get('foto'))     
+        preco_custo=novo_produto.get('preco_custo'), preco_venda=novo_produto.get('preco_venda'),foto=novo_produto.get('foto'),marca = m, tamanho = t, animal=a)     
         
-        db.session.add(t)
-        db.session.add(a)    
-        db.session.add(m)
+#        db.session.add(t)
+ #       db.session.add(a)    
+ #       db.session.add(m)
         db.session.add(p)
         
         db.session.commit()
