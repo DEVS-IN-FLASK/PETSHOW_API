@@ -3,10 +3,18 @@ from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 import requests
 
+'''
+DATABASE = './tmp/flaskr.db'
+DEBUG = False
+SECRET_KEY = 'development key'
+USERNAME = 'admin'
+PASSWORD = 'default'
+'''
 db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
+    app.config.from_object(__name__)
 
     #Banco SQlite local
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///petdb.sqlite'
@@ -28,8 +36,10 @@ def create_app():
     app.register_blueprint(clientes_app)
 
     db.init_app(app)
+
     with app.app_context():
         db.create_all()
+<<<<<<< Updated upstream
 
     @app.route("/")
 
@@ -45,5 +55,22 @@ def create_app():
         return render_template('index.html', cliente = cli)
 
     return app
+=======
+    
+        @app.route("/")
+    
+        def all():
+        
+            users = requests.get("http://127.0.0.1:5000/usuarios/").json()
+            return render_template('index.html', usuario = users)
+     
+            prods = requests.get("http://127.0.0.1:5000/produtos/").json()
+            return render_template('index.html', produto = prods)
+
+            cli = requests.get("http://127.0.0.1:5000/clientes").json()
+            return render_template('index.html', cliente = cli)
+
+        return app
+>>>>>>> Stashed changes
 
     

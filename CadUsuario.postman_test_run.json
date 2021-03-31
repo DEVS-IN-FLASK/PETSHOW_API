@@ -1,0 +1,172 @@
+{
+	"id": "1bbc2cc2-a98d-40a7-9727-ced2e2172e72",
+	"name": "CadUsuario",
+	"timestamp": "2021-03-27T15:07:45.715Z",
+	"collection_id": "4905b035-f729-487e-ba4e-d2656e5c702c",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "34063021-b717-4254-b7e4-8d4107ece261",
+			"name": "Jordana",
+			"url": "http://127.0.0.1:5000/usuarios/novo",
+			"time": 216,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				216
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ee3b0e03-089d-439b-aea8-3dc5c47935d2",
+			"name": "Amanda",
+			"url": "http://127.0.0.1:5000/usuarios/novo",
+			"time": 193,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				193
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "d596a9fa-bf46-410e-83c6-9bb5afe4375f",
+			"name": "Lauro",
+			"url": "http://127.0.0.1:5000/usuarios/novo",
+			"time": 165,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				165
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "7ac10318-28ae-4820-ba4c-caa3515639fc",
+			"name": "Maira",
+			"url": "http://127.0.0.1:5000/usuarios/novo",
+			"time": 175,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				175
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "c501df38-b1da-457d-a059-3742bfcefc72",
+			"name": "Otoniel",
+			"url": "http://127.0.0.1:5000/usuarios/novo",
+			"time": 159,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				159
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "fb39c0da-ed14-439b-8eae-1609a8f4e27e",
+			"name": "Thaisa",
+			"url": "http://127.0.0.1:5000/usuarios/novo",
+			"time": 201,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				201
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "013a6024-d007-4335-b6bf-0fb3cc7ee057",
+			"name": "Gerson",
+			"url": "http://127.0.0.1:5000/usuarios/novo",
+			"time": 196,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				196
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1305,
+	"collection": {
+		"requests": [
+			{
+				"id": "34063021-b717-4254-b7e4-8d4107ece261",
+				"method": "POST"
+			},
+			{
+				"id": "ee3b0e03-089d-439b-aea8-3dc5c47935d2",
+				"method": "POST"
+			},
+			{
+				"id": "d596a9fa-bf46-410e-83c6-9bb5afe4375f",
+				"method": "POST"
+			},
+			{
+				"id": "7ac10318-28ae-4820-ba4c-caa3515639fc",
+				"method": "POST"
+			},
+			{
+				"id": "c501df38-b1da-457d-a059-3742bfcefc72",
+				"method": "POST"
+			},
+			{
+				"id": "fb39c0da-ed14-439b-8eae-1609a8f4e27e",
+				"method": "POST"
+			},
+			{
+				"id": "013a6024-d007-4335-b6bf-0fb3cc7ee057",
+				"method": "POST"
+			}
+		]
+	}
+}
