@@ -1,3 +1,4 @@
 
 __pycache__/pet.cpython-39.pyc
 *.pyc
+.flaskenv

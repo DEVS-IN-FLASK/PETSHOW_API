@@ -1,3 +1,4 @@
-FLASK_APP=petshow_api.py
-FLASK_ENV=development
-FLASK_DEBUG=1
+FLASK_APP=petshow_api
+FLASK_ENV=production
+FLASK_DEBUG=0
+flask run

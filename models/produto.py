@@ -11,7 +11,7 @@ class Produto(db.Model):
     modelo = db.Column(db.String(45), nullable=False)
     cod_barras = db.Column(db.Integer,unique=True, nullable=False)
     porcentagem = db.Column(db.Float)
-    preco_custo = db.Column(db.Float)
+    preco_custo = db.Column(db.Float)   
     preco_venda = db.Column(db.Float)
     foto = db.Column(db.Binary)
     quantidade = db.Column(db.Integer)
