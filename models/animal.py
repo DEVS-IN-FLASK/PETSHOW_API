@@ -9,9 +9,9 @@ class Animal(db.Model):
 
     __tablename__ = 'animais'
     id = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
-    animal = db.Column(db.String(15), nullable=False)
+    animal = db.Column(db.String(15), nullable=False, unique=True)
     produtos = db.relationship('Produto', backref='animal')
     __table_args__ = (Index('animal_idx', "animal"), )
 
     def serialize(self):
-        return {'id':self.id, 'descricao':self.descricao}
+        return {'id':self.id, 'animal':self.animal}
