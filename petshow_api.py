@@ -39,23 +39,6 @@ def create_app():
 
     with app.app_context():
         db.create_all()
-<<<<<<< Updated upstream
-
-    @app.route("/")
-
-    def all():
-
-        users = requests.get("http://127.0.0.1:5000/usuarios/").json()
-        return render_template('index.html', usuario = users)
-
-        prods = requests.get("http://127.0.0.1:5000/produtos/").json()
-        return render_template('index.html', produto = prods)
-
-        cli = requests.get("http://127.0.0.1:5000/clientes").json()
-        return render_template('index.html', cliente = cli)
-
-    return app
-=======
     
         @app.route("/")
     
@@ -71,6 +54,5 @@ def create_app():
             return render_template('index.html', cliente = cli)
 
         return app
->>>>>>> Stashed changes
 
     
