@@ -3,13 +3,6 @@ from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 import requests
 
-'''
-DATABASE = './tmp/flaskr.db'
-DEBUG = False
-SECRET_KEY = 'development key'
-USERNAME = 'admin'
-PASSWORD = 'default'
-'''
 db = SQLAlchemy()
 
 def create_app():
@@ -24,7 +17,7 @@ def create_app():
 
 #    Banco Postgres Heroku (ativo)
 #    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+psycopg2://nuenrexvutummr:e8af86aaf4e99a011914e701532b0fc9bb7b9588b34158cce47e2e921f2ed0c7@ec2-52-21-252-142.compute-1.amazonaws.com:5432/dse9kl9ve57mv'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
     from usuarios import usuarios_app
     app.register_blueprint(usuarios_app)
@@ -54,5 +47,3 @@ def create_app():
             return render_template('index.html', cliente = cli)
 
         return app
-
-    
