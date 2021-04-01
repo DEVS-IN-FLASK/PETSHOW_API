@@ -7,6 +7,7 @@ class Produto(db.Model):
 
     __tablename__="produtos"
     id = db.Column(db.Integer, primary_key=True,nullable=True,autoincrement=True)
+    nome = db.Column(db.String(45),nullable=False)
     descricao = db.Column(db.String(255),nullable=False)
     modelo = db.Column(db.String(45), nullable=False)
     cod_barras = db.Column(db.Integer,unique=True, nullable=False)
@@ -20,6 +21,6 @@ class Produto(db.Model):
     tamanho_id = db.Column(db.Integer,db.ForeignKey('tamanhos.id'))
 
     def serialize(self):
-        return {'id':self.id,'descricao':self.descricao,'modelo':self.modelo,'cod_barras':self.cod_barras, 
+        return {'id':self.id,'nome':self.nome,'descricao':self.descricao,'modelo':self.modelo,'cod_barras':self.cod_barras, 
         'porcentagem':self.porcentagem,'preco_custo':self.preco_custo,'preco_venda':self.preco_venda,'foto':self.foto,'quantidade':self.quantidade,'marca_id':self.marca_id,'animal_id':self.animal_id,'tamanho_id':self.tamanho_id}
 

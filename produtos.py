@@ -22,7 +22,7 @@ def produtos():
         if not dados:
             return jsonify({'erro':'Os dados do produto não foram inseridos'})
         try:
-            produto = Produto(descricao=dados['descricao'], modelo=dados['modelo'],
+            produto = Produto(nome=dados['nome'],descricao=dados['descricao'], modelo=dados['modelo'],
             cod_barras=dados['cod_barras'], porcentagem=dados['porcentagem'],
             preco_custo=dados['preco_custo'], preco_venda=dados['preco_venda'], quantidade=dados['quantidade'], foto=dados['foto'], marca_id=dados['marca_id'], tamanho_id=dados['tamanho_id'], animal_id=dados['animal_id'])
             db.session.add(produto)
@@ -53,9 +53,10 @@ def alterar_produto(id):
     if not dados:
         return jsonify({'erro':'Os dados do produto não foram inseridos'})
     try:
-        produto = Produto(descricao=dados['descricao'], modelo=dados['modelo'],
+        produto = Produto(nome=dados['nome'],descricao=dados['descricao'], modelo=dados['modelo'],
             cod_barras=dados['cod_barras'], porcentagem=dados['porcentagem'],
             preco_custo=dados['preco_custo'], preco_venda=dados['preco_venda'], quantidade=dados['quantidade'], foto=dados['foto'], marca_id=dados['marca_id'], tamanho_id=dados['tamanho_id'], animal_id=dados['animal_id'])
+        produto.nome = dados['nome']
         produto.descricao = dados['descricao']
         produto.modelo = modelo=dados['modelo']
         produto.cod_barras = cod_barras=dados['cod_barras']
