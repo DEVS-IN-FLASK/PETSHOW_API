@@ -22,17 +22,17 @@ def produtos():
         if not dados:
             return jsonify({'erro':'Os dados do produto não foram inseridos'})
         try:
-            produto = Produto(descricao=dados['descricao'], modelo=dados['modelo'],
+            p = Produto(descricao=dados['descricao'], modelo=dados['modelo'],
             cod_barras=dados['cod_barras'], porcentagem=dados['porcentagem'],
             preco_custo=dados['preco_custo'], preco_venda=dados['preco_venda'], quantidade=dados['quantidade'], foto=dados['foto'], marca_id=dados['marca_id'], tamanho_id=dados['tamanho_id'], animal_id=dados['animal_id'])
-            db.session.add(produto)
+            db.session.add(p)
             db.session.commit()
             return jsonify({'sucesso':'Produto cadastrado'})
         except IntegrityError:
             db.session.rollback()
             return jsonify({'erro':"Produto já cadastrado"}),400
         except Exception:
-            return jsonify({'erro':'Os dados da marca nao foram inseridos'})
+            return jsonify({'erro':'Os dados do produto não foram inseridos'})
 
 @produtos_app.route('/<id>/remover/', methods=['DELETE'])
 def remover_produto(id):
