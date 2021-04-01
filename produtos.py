@@ -32,7 +32,7 @@ def produtos():
             db.session.rollback()
             return jsonify({'erro':"Produto já cadastrado"}),400
         except Exception:
-            return jsonify({'erro':'Os dados do produto não foram inseridos'})
+            return jsonify({'Sistema':'Os dados do produto não foram inseridos'})
 
 @produtos_app.route('/<id>/remover/', methods=['DELETE'])
 def remover_produto(id):
