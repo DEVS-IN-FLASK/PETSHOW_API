@@ -9,7 +9,7 @@ def create_app():
     app = Flask(__name__)
 
     '''Banco SQlite local'''
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///petdb.sqlite'
+#    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///petdb.sqlite'
     '''Banco Postgres local'''
 #    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:819246@localhost:5432/petdb'
 
