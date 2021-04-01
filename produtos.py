@@ -22,10 +22,10 @@ def produtos():
         if not dados:
             return jsonify({'erro':'Os dados do produto não foram inseridos'})
         try:
-            p = Produto(descricao=dados['descricao'], modelo=dados['modelo'],
+            produto = Produto(descricao=dados['descricao'], modelo=dados['modelo'],
             cod_barras=dados['cod_barras'], porcentagem=dados['porcentagem'],
             preco_custo=dados['preco_custo'], preco_venda=dados['preco_venda'], quantidade=dados['quantidade'], foto=dados['foto'], marca_id=dados['marca_id'], tamanho_id=dados['tamanho_id'], animal_id=dados['animal_id'])
-            db.session.add(p)
+            db.session.add(produto)
             db.session.commit()
             return jsonify({'sucesso':'Produto cadastrado'})
         except IntegrityError:
