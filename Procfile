@@ -1,1 +1,1 @@
-web: gunicorn petshow_api: app
+web:python run.py
