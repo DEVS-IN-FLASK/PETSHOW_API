@@ -1,6 +1,7 @@
 from petshow_api import db
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Index
+from sqlalchemy.orm import relationship
 
 class Marca(db.Model):
 

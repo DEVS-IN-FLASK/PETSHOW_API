@@ -1,4 +1,7 @@
+from enum import unique
 from petshow_api import db
+from sqlalchemy import ForeignKey, Boolean 
+from sqlalchemy.orm import relationship
 
 class Cliente(db.Model):
 
@@ -6,7 +9,7 @@ class Cliente(db.Model):
     id = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
     nome = db.Column(db.String(45))
     email = db.Column(db.String(60))
-    cpf = db.Column(db.String(11))
+    cpf = db.Column(db.String(11),unique=True)
     endereco_id = db.Column(db.Integer,db.ForeignKey('enderecos.id'))
 
     def serialize(self):

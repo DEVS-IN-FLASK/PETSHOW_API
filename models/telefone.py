@@ -6,5 +6,6 @@ class Telefone(db.Model):
     id = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
     telefone = db.Column(db.String(11))
 
+
     def serialize(self):
         return {'id':self.id, 'telefone':self.telefone}
