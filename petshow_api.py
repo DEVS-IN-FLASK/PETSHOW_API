@@ -1,15 +1,12 @@
-#from flask.globals import current_app
 from flask import Flask, render_template, url_for
 #from flask.globals import current_app
 from flask_sqlalchemy import SQLAlchemy
 import requests
-from flask_cors import CORS
 
 db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
 
     '''Banco SQlite local'''
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///petdb.sqlite'
