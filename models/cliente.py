@@ -1,4 +1,6 @@
 from petshow_api import db
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
 
 class Cliente(db.Model):
     __tablename__ = 'clientes'
@@ -22,4 +24,3 @@ class Cliente(db.Model):
                 "email": self.email,
                 "endereco": self.endereco.serialize(),
                 }
-
