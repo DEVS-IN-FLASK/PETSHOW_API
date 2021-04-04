@@ -8,8 +8,8 @@ class Usuario(db.Model):
     senha = db.Column(db.String(128),nullable=False)
     login = db.Column(db.String(15),nullable=False,unique=True)
     tipo = db.Column(db.String(15),nullable=False)
-    pedidos = db.relationship('Pedido',backref='pedidos')
-    produtos = db.relationship('Produto',backref='produtos')
+#    pedidos = db.relationship('Pedido',backref='pedidos')
+#    produtos = db.relationship('Produto',backref='produtos')
 
     def serialize(self):
         return {'id':self.id,'nome':self.nome,'login':self.login,'tipo':self.tipo }
