@@ -1,14 +1,14 @@
 from flask import Flask, render_template, url_for
 #from flask.globals import current_app
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS, cross_origin
+#from flask_cors import CORS, cross_origin
 import requests
 
 db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    CORS(app, support_credentials=True)
+#    CORS(app, support_credentials=True)
 
     '''Banco SQlite local'''
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///petdb.sqlite'
@@ -34,7 +34,7 @@ def create_app():
         db.create_all()
             
         @app.route("/")
-        @cross_origin(origin='*')
+#        @cross_origin(origin='*')
            
         def all():
         
