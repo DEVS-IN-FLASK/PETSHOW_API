@@ -13,7 +13,7 @@ def clientes():
 
         if not dados:
             return jsonify({'erro':'Os dados do cliente não foram inseridos'})
-        try:
+        try:    
             end = dados['endereco']
             endereco = Endereco(rua=end['rua'], numero=end['numero'], bairro=end['bairro'], cep=end['cep'], cidade=end['cidade'], uf=end['uf'])
             db.session.add(endereco)

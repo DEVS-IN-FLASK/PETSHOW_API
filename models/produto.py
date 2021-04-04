@@ -20,7 +20,7 @@ class Produto(db.Model):
     animal_id = db.Column(db.Integer,db.ForeignKey('animais.id'))
     tamanho_id = db.Column(db.Integer,db.ForeignKey('tamanhos.id'))
     usuario_id = db.Column(db.Integer,db.ForeignKey('usuarios.id'))
-    produtos = db.relationship('Produto',backref='tamanho')
+
 
     def serialize(self):
         return {'id':self.id,'nome':self.nome,'descricao':self.descricao,'modelo':self.modelo,'cod_barras':self.cod_barras, 
