@@ -1,10 +1,12 @@
 from flask import Flask, render_template, url_for
 #from flask.globals import current_app
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 #from flask_cors import CORS, cross_origin
 import requests
 
 db = SQLAlchemy()
+migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
@@ -13,10 +15,10 @@ def create_app():
     '''Banco SQlite local'''
 #    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///petdb.sqlite'
     '''Banco Postgres local'''
-#    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:819246@localhost:5432/petdb'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:819246@localhost:5432/petdb'
 
-    '''Banco Postgres Heroku (ativo)'''
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+psycopg2://nuenrexvutummr:e8af86aaf4e99a011914e701532b0fc9bb7b9588b34158cce47e2e921f2ed0c7@ec2-52-21-252-142.compute-1.amazonaws.com:5432/dse9kl9ve57mv'
+#    '''Banco Postgres Heroku (ativo)'''
+#    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+psycopg2://nuenrexvutummr:e8af86aaf4e99a011914e701532b0fc9bb7b9588b34158cce47e2e921f2ed0c7@ec2-52-21-252-142.compute-1.amazonaws.com:5432/dse9kl9ve57mv'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     from usuarios import usuarios_app
@@ -28,7 +30,8 @@ def create_app():
     from clientes import clientes_app
     app.register_blueprint(clientes_app)
 
-    db.init_app(app)    
+    db.init_app(app)
+    migrate.init_app(app, db)    
 
     with app.app_context():
         db.create_all()
