@@ -46,7 +46,7 @@ def novo():
     if not novo_usuario:
         return jsonify({'erro':'Os dados do usuario não foram inseridos'})
     try:
-        u = Usuario(login=novo_usuario.get('login'), nome=novo_usuario.get('nome'), senha=generate_password_hash(novo_usuario.get('senha')),tipo=novo_usuario.get('tipo'))
+        u = Usuario(login=novo_usuario.get('login'), nome=novo_usuario.get('nome'), email=novo_usuario.get('email'),senha=generate_password_hash(novo_usuario.get('senha')),tipo=novo_usuario.get('tipo'))
         db.session.add(u)
         db.session.commit()
         return jsonify({'sucesso':'Usuario cadastrado'})
