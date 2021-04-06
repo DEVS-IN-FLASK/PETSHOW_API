@@ -1,5 +1,7 @@
 from flask import Blueprint, jsonify, request
+from flask.globals import session
 from sqlalchemy.exc import IntegrityError
+from flask_sqlalchemy import SQLAlchemy
 
 from models import Animal, Marca, Produto, Tamanho
 from petshow_api import db
