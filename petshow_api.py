@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 import requests
 
 db = SQLAlchemy()
-migrate = Migrate()
+#migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
@@ -31,7 +31,7 @@ def create_app():
     app.register_blueprint(clientes_app)
 
     db.init_app(app)
-    migrate.init_app(app, db)    
+#    migrate.init_app(app, db)    
 
     with app.app_context():
         db.create_all()
