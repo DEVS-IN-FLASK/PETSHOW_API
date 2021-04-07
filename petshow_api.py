@@ -31,13 +31,13 @@ def create_app():
     app.register_blueprint(clientes_app)
 
     db.init_app(app)
-#    migrate.init_app(app, db)    
+ 
 
     with app.app_context():
         db.create_all()
             
         @app.route("/")
-#        @cross_origin(origin='*')
+
            
         def all():
         
@@ -48,7 +48,6 @@ def create_app():
             prods = requests.get("https://petshow-api.herokuapp.com/produtos/").json()
             return render_template('index.html', produto = prods)
 
-#            cli = requests.get("http://127.0.0.1:5000/clientes/").json()
             cli = requests.get("https://petshow-api.herokuapp.com/clientes").json()
             return render_template('index.html', cliente = cli)
 
