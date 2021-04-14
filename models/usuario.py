@@ -1,4 +1,6 @@
 from petshow_api import db
+from sqlalchemy import Index
+from sqlalchemy.orm import relationship
 
 class Usuario(db.Model):
 
@@ -9,6 +11,8 @@ class Usuario(db.Model):
     senha = db.Column(db.String(128),nullable=False)
     login = db.Column(db.String(15),nullable=False,unique=True)
     tipo = db.Column(db.String(15),nullable=False)
+    produtos = db.relationship('Produto',backref='login')
+    __table_args__ = (Index('login_idx', "login"), )
 #    pedidos = db.relationship('Pedido',backref='pedidos')
 #    produtos = db.relationship('Produto',backref='produtos')
 
