@@ -10,5 +10,6 @@ from .pet import Pet
 from .situacao import Situacao
 from .telefone import Telefone
 from .pets_has_clientes import Pets_Has_Clientes
+from .pedido_produto import pedido_produto
 
 

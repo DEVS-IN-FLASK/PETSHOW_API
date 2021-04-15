@@ -1,3 +1,4 @@
+from models import pedido
 from flask import Flask, render_template, url_for
 #from flask.globals import current_app
 from flask_sqlalchemy import SQLAlchemy
@@ -29,6 +30,9 @@ def create_app():
     from clientes import clientes_app
     app.register_blueprint(clientes_app)
 
+    from pedidos import pedidos_app
+    app.register_blueprint(pedidos_app)
+
     db.init_app(app)
  
 
@@ -49,6 +53,9 @@ def create_app():
 
             cli = requests.get("https://petshow-api.herokuapp.com/clientes").json()
             return render_template('index.html', cliente = cli)
+
+            ped = requests.get("https://petshow-api.herokuapp.com/pedidos").json()
+            return render_template('index.html', pedido = ped)
 
         
         return app

@@ -9,12 +9,12 @@ class Usuario(db.Model):
     nome = db.Column(db.String(25),nullable=False)
     email = db.Column(db.String(50),nullable=False)
     senha = db.Column(db.String(128),nullable=False)
-    login = db.Column(db.String(15),nullable=False,unique=True)
+    login = db.Column(db.String(15),nullable=False)
     tipo = db.Column(db.String(15),nullable=False)
     produtos = db.relationship('Produto',backref='login')
+    pedidos = db.relationship('Pedido',backref='login')
     __table_args__ = (Index('login_idx', "login"), )
-#    pedidos = db.relationship('Pedido',backref='pedidos')
-#    produtos = db.relationship('Produto',backref='produtos')
+
 
     def serialize(self):
         return {'id':self.id,'nome':self.nome,'email':self.email,'login':self.login,'tipo':self.tipo }

@@ -2,7 +2,7 @@ from petshow_api import db
 from sqlalchemy import ForeignKey, Boolean 
 from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
-
+from models import pedido_produto
 class Produto(db.Model):    
 
     __tablename__="produtos"
@@ -20,11 +20,12 @@ class Produto(db.Model):
     animal_id = db.Column(db.Integer,db.ForeignKey('animais.id'))
     tamanho_id = db.Column(db.Integer,db.ForeignKey('tamanhos.id'))
     usuario_id = db.Column(db.Integer,db.ForeignKey('usuarios.id'))
+    pedidos = db.relationship('Pedido', secondary=pedido_produto,backref=db.backref('produtos', lazy='dynamic'),lazy='dynamic')
+
 
 
     def serialize(self):
         return {'id':self.id,'nome':self.nome,'descricao':self.descricao,'modelo':self.modelo,'cod_barras':self.cod_barras, 
         'porcentagem':self.porcentagem,'preco_custo':self.preco_custo,'preco_venda':self.preco_venda,'foto':self.foto,
-        'quantidade':self.quantidade,'marca_id':self.marca_id,'animal_id':self.animal_id,'tamanho_id':self.tamanho_id
-        ,'usuario_id':self.usuario_id}
-
+        'quantidade':self.quantidade,'marca_id':self.marca_id,'animal_id':self.animal_id,'tamanho_id':self.tamanho_id,
+        'usuario_id':self.usuario_id}
