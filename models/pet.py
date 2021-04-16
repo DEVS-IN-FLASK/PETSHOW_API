@@ -8,6 +8,7 @@ class Pet(db.Model):
     porte = db.Column(db.String(10), nullable=False)
     genero = db.Column(db.String(1), nullable=False)
     especie = db.Column(db.String(15), nullable=False)
+    animal_id = db.Column(db.Integer,db.ForeignKey('animais.id'))
 
     clientes = db.relationship('Cliente', secondary='pets_has_clientes')
 
@@ -20,4 +21,4 @@ class Pet(db.Model):
                 "raca": self.raca,
                 "porte": self.porte,
                 "genero": self.genero,
-                "especie": self.especie}
+                "animal_id": self.animal_id}

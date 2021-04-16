@@ -1,7 +1,7 @@
 from petshow_api import db
-from sqlalchemy import ForeignKey, Boolean 
-from sqlalchemy.orm import relationship
-from flask_sqlalchemy import SQLAlchemy
+#from sqlalchemy import ForeignKey
+#from sqlalchemy.orm import relationship
+#from flask_sqlalchemy import SQLAlchemy
 
 class Produto(db.Model):    
 
