@@ -1,4 +1,3 @@
-from models import pedido
 from flask import Flask, render_template, url_for
 #from flask.globals import current_app
 from flask_sqlalchemy import SQLAlchemy
