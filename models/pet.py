@@ -7,7 +7,6 @@ class Pet(db.Model):
     raca = db.Column(db.String(45), nullable=False, default="SRD")
     porte = db.Column(db.String(10), nullable=False)
     genero = db.Column(db.String(1), nullable=False)
-    especie = db.Column(db.String(15), nullable=False)
     animal_id = db.Column(db.Integer,db.ForeignKey('animais.id'))
 
     clientes = db.relationship('Cliente', secondary='pets_has_clientes')
