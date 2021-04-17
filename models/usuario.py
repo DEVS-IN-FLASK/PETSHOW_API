@@ -12,7 +12,7 @@ class Usuario(db.Model):
     tipo = db.Column(db.String(15),nullable=False)
     produtos = db.relationship('Produto',backref='login')
     __table_args__ = (Index('login_idx', "login"), )
-#    pedidos = db.relationship('Pedido',backref='pedidos')
+    pedidos = db.relationship('Pedido',backref='login')
 #    produtos = db.relationship('Produto',backref='produtos')
 
     def serialize(self):
