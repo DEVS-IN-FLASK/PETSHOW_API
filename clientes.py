@@ -45,11 +45,11 @@ def clientes():
                     pets = dados['pets']
                     if (len(pets) > 0):
                         for pt in pets:
-                            busca_pet = Pet.query.filter_by(nome=pt['nome'], raca=pt['raca'], porte=pt['porte'], genero=pt['genero'], especie=pt['especie']).first()
+                            busca_pet = Pet.query.filter_by(nome=pt['nome'], raca=pt['raca'], porte=pt['porte'], genero=pt['genero'], animal_id=pt['animal_id']).first()
                             if busca_pet is not None:
                                 pet_ids.append(busca_pet.id)
                             else:
-                                pet = Pet(nome=pt['nome'], raca=pt['raca'], porte=pt['porte'], genero=pt['genero'], especie=pt['especie'])
+                                pet = Pet(nome=pt['nome'], raca=pt['raca'], porte=pt['porte'], genero=pt['genero'], animal_id=pt['animal_id'])
                                 db.session.add(pet)
                                 db.session.commit()
                                 pet_ids.append(pet.id)
