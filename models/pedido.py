@@ -12,5 +12,8 @@ class Pedido(db.Model):
     usuario_id = db.Column(db.Integer,db.ForeignKey('usuarios.id'))
     cliente_id = db.Column(db.Integer,db.ForeignKey('clientes.id'))
 
+    pedido_produto = db.relationship('Pedido', secondary=pedido_produto, lazy='subquery',
+        backref=db.backref('produtos', lazy=True))
+
     def serialize(self):
         return {'id':self.id,'data':self.data,'observacao':self.observacao,'situacao_id':self.situacao_id, 'usuario_id':self.usuario_id,'cliente_id':self.cliente_id}

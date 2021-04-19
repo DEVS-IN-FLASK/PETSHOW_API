@@ -1,7 +1,12 @@
 from petshow_api import db
 #from sqlalchemy import ForeignKey
 #from sqlalchemy.orm import relationship
-#from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
+
+
+pedido_produto = db.Table('pedido_produto',
+    db.Column('produtos_id', db.Integer, db.ForeignKey('produtos.id'), primary_key=True),
+    db.Column('pedidos_id', db.Integer, db.ForeignKey('pedidos.id'), primary_key=True))
 
 class Produto(db.Model):    
 
@@ -20,6 +25,9 @@ class Produto(db.Model):
     animal_id = db.Column(db.Integer,db.ForeignKey('animais.id'))
     tamanho_id = db.Column(db.Integer,db.ForeignKey('tamanhos.id'))
     usuario_id = db.Column(db.Integer,db.ForeignKey('usuarios.id'))
+
+    pedido_produto = db.relationship('Pedido', secondary=pedido_produto, lazy='subquery',
+        backref=db.backref('produtos', lazy=True))
 
 
     def serialize(self):
