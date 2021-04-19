@@ -6,6 +6,9 @@ class Pets_Has_Clientes(db.Model):
     cliente_id = db.Column(db.Integer, db.ForeignKey('clientes.id'))#, primary_key=True)
     pet_id = db.Column(db.Integer, db.ForeignKey('pets.id'))#, primary_key=True)
     
+    def __repr__(self):
+        return f"<Cliente {self.cliente_id} Has Pet {self.pet_id}>"
+    
     def serialize(self):
         return {"id": self.id,
                 "cliente_id": self.cliente_id,
