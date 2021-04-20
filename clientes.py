@@ -6,6 +6,15 @@ from petshow_api import db
 clientes_app = Blueprint('clientes', __name__,url_prefix='/clientes')
 
 # inclusão e consulta de clientes e pets
+
+@clientes_app.route('/pets/')
+def pets():
+    try:
+        pets = Pet.query.all()
+        return jsonify([p.serialize() for p in pets])
+    except Exception:
+        return jsonify({'erro':'Nao foi possivel acessar os dados'})
+    
 @clientes_app.route('/',methods=['GET', 'POST'])
 def clientes():
     if request.method == 'POST':
@@ -106,6 +115,7 @@ def clientes():
             return jsonify({'erro':'Nao foi possivel acessar os dados'})
 
 # remocao de cliente, telefone, endereco e relacionamento com pet
+# Não recomendável excluir um cliente - seguir o mesmo princípio do usuário, mantendo-o na base
 @clientes_app.route('/<id>/remover/', methods=['DELETE'])
 def remover_cliente(id):
     try:
@@ -149,21 +159,69 @@ def alterar_cliente(id):
             endereco.cidade = end['cidade']
             endereco.uf = end['uf']
 
-            #db.session.commit()
-            
             lista_tel = dados['telefones']
-            busca_tel = Telefone.query.filter_by(cliente_id=cliente.id).all()
-            for tel in busca_tel:
-                db.session.delete(tel)
+            lista_tel_numeros = [x['telefone'] for x in lista_tel]
+            db_tel = Telefone.query.filter_by(cliente_id=cliente.id).all()
+            db_tel_numeros = [x.telefone for x in db_tel]
+            
             for tel in lista_tel:
-                numero = Telefone(telefone=tel['telefone'], cliente_id=cliente.id)
-                db.session.add(numero)
-
+                if tel['telefone'] not in db_tel_numeros:
+                    numero = Telefone(telefone=tel['telefone'], cliente_id=cliente.id)
+                    db.session.add(numero)
+            for tel in db_tel:
+                if tel.telefone not in lista_tel_numeros:
+                    db.session.delete(tel)
+            
+            lista_pet = dados['pets']
+            lista_pet_index = [int(x['id']) for x in lista_pet if x != '']
+            db_pet_has_clientes = Pets_Has_Clientes.query.filter_by(cliente_id=cliente.id).all()
+            db_pet_index = [x.pet_id for x in db_pet_has_clientes]
+            db_pet = [Pet.query.filter_by(id=x).one() for x in db_pet_index]
+            
+            
+            for pet in lista_pet:
+                if 'id' in pet:
+                    if int(pet['id']) == 0:
+                        new_pet = Pet(nome=pet['nome'], raca=pet['raca'], porte=pet['porte'], genero=pet['genero'], animal_id=pet['animal_id'])
+                        db.session.add(new_pet)
+                        db.session.commit()
+                        new_pet_id = new_pet.id
+                        pets_has_clientes = Pets_Has_Clientes(cliente_id=id, pet_id=new_pet_id)
+                        db.session.add(pets_has_clientes)
+                        db.session.commit()
+                        lista_pet_index.append(new_pet_id)
+                    else:
+                        if int(pet['id']) not in db_pet_index:
+                            pets_has_clientes = Pets_Has_Clientes(cliente_id=id, pet_id=pet['id'])
+                            print(pets_has_clientes)
+                            db.session.add(pets_has_clientes)
+                            db.session.commit()
+                
+                
+            for x in db_pet_index:
+                if x not in lista_pet_index:
+                    try:
+                        pets_has_clientes = Pets_Has_Clientes.query.filter_by(cliente_id=id, pet_id=x).one()
+                        print(pets_has_clientes)
+                        db.session.delete(pets_has_clientes)
+                    except:
+                        db.session.commit()
             db.session.commit()
+            
+            for x in db_pet_index:
+                pets_has_clientes = Pets_Has_Clientes.query.filter_by(pet_id=x).all()
+                if len(pets_has_clientes) == 0:
+                    try:
+                        pet_to_delete = Pet.query.filter_by(id=x).first()
+                        db.session.delete(pet_to_delete)
+                        db.session.commit()
+                    except:
+                        db.session.commit()
 
             return jsonify({'sucesso':'Cliente alterado'})
         else:
             return jsonify({'erro':'Cliente nao encontrado'})
-    except Exception:
+    except Exception as e:
         db.session.rollback()
+        print(e)
         return jsonify({'erro':'Nao foi possivel acessar os dados'})

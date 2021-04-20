@@ -1,0 +1,194 @@
+Documento com modelos de requisições para a API
+
+PUT clientes:
+- Altera dados cadastrais do clientes
+- Altera telefones
+- Altera pets - exclui registros que não estão em nenhum clientes
+
+ex1 - substituir todos os pets de um cliente por novos (usar id=0)
+{
+    "nome": "Nome",
+    "email": "nome@provedor.com",
+    "cpf": "00000000000",
+    "endereco": {
+        "rua": "Rua Rua",
+        "numero": "12B",
+        "bairro": "Jardim Bairro",
+        "cep": "06000000",
+        "cidade": "Cidade",
+        "uf": "AC"
+    },
+    "telefones": [
+        {
+            "telefone": "95959511"
+        },
+        {
+            "telefone": "7743439847"
+        }
+    ],
+    "pets": [
+        {
+            "id": "0",
+            "nome": "Dog",
+            "raca": "Pintcher Argentino",
+            "porte": "muito pequeno",
+            "genero": "m",
+            "animal_id": "1"
+        },
+        {
+            "id": "0",
+            "nome": "Cat",
+            "raca": "Tipo Garfield",
+            "porte": "medio",
+            "genero": "m",
+            "animal_id": "2"
+        },
+        {
+            "id": "0",
+            "nome": "Cats",
+            "raca": "Tipo Garfields",
+            "porte": "medios",
+            "genero": "m",
+            "animal_id": "2"
+        },
+        {
+            "id": "0",
+            "nome": "Dog",
+            "raca": "Tipo Snoopy",
+            "porte": "pequeno",
+            "genero": "m",
+            "animal_id": "1"
+        }
+    ]
+}
+
+ex2 - remover algum pet (pets devem possuir id)
+{
+    "nome": "Nome",
+    "email": "nome@provedor.com",
+    "cpf": "00000000000",
+    "endereco": {
+        "rua": "Rua Rua",
+        "numero": "12B",
+        "bairro": "Jardim Bairro",
+        "cep": "06000000",
+        "cidade": "Cidade",
+        "uf": "AC"
+    },
+    "telefones": [
+        {
+            "telefone": "95959511"
+        },
+        {
+            "telefone": "7743439847"
+        }
+    ],
+    "pets": [
+        {
+            "id": "1",
+            "nome": "Dog",
+            "raca": "Pintcher Argentino",
+            "porte": "muito pequeno",
+            "genero": "m",
+            "animal_id": "1"
+        },
+        {
+            "id": "2",
+            "nome": "Cat",
+            "raca": "Tipo Garfield",
+            "porte": "medio",
+            "genero": "m",
+            "animal_id": "2"
+        },
+        {
+            "id": "3",
+            "nome": "Cats",
+            "raca": "Tipo Garfields",
+            "porte": "medios",
+            "genero": "m",
+            "animal_id": "2"
+        }
+    ]
+}
+
+ex3 - inserir um pet novo aos demais (mantenha os ids dos existentes e crie um novo com id=0)
+{
+    "nome": "Nome",
+    "email": "nome@provedor.com",
+    "cpf": "00000000000",
+    "endereco": {
+        "rua": "Rua Rua",
+        "numero": "12B",
+        "bairro": "Jardim Bairro",
+        "cep": "06000000",
+        "cidade": "Cidade",
+        "uf": "AC"
+    },
+    "telefones": [
+        {
+            "telefone": "95959511"
+        },
+        {
+            "telefone": "7743439847"
+        }
+    ],
+    "pets": [
+        {
+            "id": "1",
+            "nome": "Dog",
+            "raca": "Pintcher Argentino",
+            "porte": "muito pequeno",
+            "genero": "m",
+            "animal_id": "1"
+        },
+        {
+            "id": "2",
+            "nome": "Cat",
+            "raca": "Tipo Garfield",
+            "porte": "medio",
+            "genero": "m",
+            "animal_id": "2"
+        },
+        {
+            "id": "3",
+            "nome": "Cats",
+            "raca": "Tipo Garfields",
+            "porte": "medios",
+            "genero": "m",
+            "animal_id": "2"
+        },
+        {
+            "id": "0",
+            "nome": "Dog",
+            "raca": "Tipo Snoopy",
+            "porte": "pequeno",
+            "genero": "m",
+            "animal_id": "1"
+        }
+    ]
+}
+
+ex4 - remover todos os pets de um cliente (enviar lista vazia)
+
+{
+    "nome": "Nome",
+    "email": "nome@provedor.com",
+    "cpf": "00000000000",
+    "endereco": {
+        "rua": "Rua Rua",
+        "numero": "12B",
+        "bairro": "Jardim Bairro",
+        "cep": "06000000",
+        "cidade": "Cidade",
+        "uf": "AC"
+    },
+    "telefones": [
+        {
+            "telefone": "95959511"
+        },
+        {
+            "telefone": "7743439847"
+        }
+    ],
+    "pets": []
+}
