@@ -4,10 +4,6 @@ from petshow_api import db
 from flask_sqlalchemy import SQLAlchemy
 
 
-pedido_produto = db.Table('pedido_produto',
-    db.Column('produtos_id', db.Integer, db.ForeignKey('produtos.id'), primary_key=True),
-    db.Column('pedidos_id', db.Integer, db.ForeignKey('pedidos.id'), primary_key=True))
-
 class Produto(db.Model):    
 
     __tablename__="produtos"
@@ -20,14 +16,13 @@ class Produto(db.Model):
     preco_custo = db.Column(db.Float, default=0)
     preco_venda = db.Column(db.Float, default=0)
     foto = db.Column(db.String)
-    quantidade = db.Column(db.Integer, default=0)
     marca_id = db.Column(db.Integer,db.ForeignKey('marcas.id'))
     animal_id = db.Column(db.Integer,db.ForeignKey('animais.id'))
     tamanho_id = db.Column(db.Integer,db.ForeignKey('tamanhos.id'))
-    usuario_id = db.Column(db.Integer,db.ForeignKey('usuarios.id'))
+    usuario_id = db.Column(db.Integer,db.ForeignKey('usuarios.id'),nullable=True)
 
-    pedido_produto = db.relationship('Pedido', secondary=pedido_produto, lazy='subquery',
-        backref=db.backref('produtos', lazy=True))
+#    pedido_produto = db.relationship('Pedido', secondary=pedido_produto, lazy='subquery',
+#        backref=db.backref('produtos', lazy=True))
 
 
     def serialize(self):
