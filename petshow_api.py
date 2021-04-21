@@ -32,6 +32,9 @@ def create_app():
     from clientes import clientes_app
     app.register_blueprint(clientes_app)
 
+    from pedidos import pedidos_app
+    app.register_blueprint(pedidos_app)
+
     db.init_app(app)
  
 
@@ -43,15 +46,21 @@ def create_app():
            
         def all():
         
-#            users = requests.get("http://127.0.0.1:5000/usuarios/").json()
-            users = requests.get("https://petshow-api.herokuapp.com/usuarios/").json()
+            users = requests.get("http://127.0.0.1:5000/usuarios/").json()
+#            users = requests.get("https://petshow-api.herokuapp.com/usuarios/").json()
             return render_template('index.html', usuario = users)
      
-            prods = requests.get("https://petshow-api.herokuapp.com/produtos/").json()
+            prods = requests.get("http://127.0.0.1:5000/produtos/").json()
+#            prods = requests.get("https://petshow-api.herokuapp.com/produtos/").json()
             return render_template('index.html', produto = prods)
 
-            cli = requests.get("https://petshow-api.herokuapp.com/clientes").json()
+            cli = requests.get("http://127.0.0.1:5000/clientes/").json()
+#            cli = requests.get("https://petshow-api.herokuapp.com/clientes").json()
             return render_template('index.html', cliente = cli)
+
+            ped = requests.get("http://127.0.0.1:5000/pedidos/").json()
+#            cli = requests.get("https://petshow-api.herokuapp.com/pedidos").json()
+            return render_template('index.html', pedido = ped)
 
         
         return app

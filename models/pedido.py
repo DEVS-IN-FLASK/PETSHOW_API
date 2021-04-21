@@ -5,10 +5,10 @@ class Pedido(db.Model):
 
     __tablename__="pedidos"
     id = db.Column(db.Integer, primary_key=True,nullable=True,autoincrement=True)
-    data = db.Column(db.DateTime,nullable=False)
+    data = db.Column(db.DateTime, server_default=UtcNow())
     observacao = db.Column(db.String(200), nullable=False)
 #    quantidade = db.Column(db.Integer)
-    situacao_id = db.Column(db.Integer,db.ForeignKey('situacao.id'))
+    situacao_id = db.Column(db.Integer,db.ForeignKey('situacao.id'))    
     usuario_id = db.Column(db.Integer,db.ForeignKey('usuarios.id'))
     cliente_id = db.Column(db.Integer,db.ForeignKey('clientes.id'))
 

@@ -28,6 +28,6 @@ class Produto(db.Model):
     def serialize(self):
         return {'id':self.id,'nome':self.nome,'descricao':self.descricao,'modelo':self.modelo,'cod_barras':self.cod_barras, 
         'porcentagem':self.porcentagem,'preco_custo':self.preco_custo,'preco_venda':self.preco_venda,'foto':self.foto,
-        'quantidade':self.quantidade,'marca_id':self.marca_id,'animal_id':self.animal_id,'tamanho_id':self.tamanho_id
+        'marca_id':self.marca_id,'animal_id':self.animal_id,'tamanho_id':self.tamanho_id
         ,'usuario_id':self.usuario_id}
 
