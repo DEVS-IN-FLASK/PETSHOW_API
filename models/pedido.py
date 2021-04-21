@@ -1,12 +1,13 @@
 from petshow_api import db
 from sqlalchemy import ForeignKey
+from datetime import datetime
 
 class Pedido(db.Model):
 
     __tablename__="pedidos"
     id = db.Column(db.Integer, primary_key=True,nullable=True,autoincrement=True)
-    data = db.Column(db.DateTime, server_default=UtcNow())
-    observacao = db.Column(db.String(200), nullable=False)
+    data = db.Column(db.DateTime(timezone=True), default=datetime.now)
+    observacao = db.Column(db.String(200), nullable=True)
 #    quantidade = db.Column(db.Integer)
     situacao_id = db.Column(db.Integer,db.ForeignKey('situacao.id'))    
     usuario_id = db.Column(db.Integer,db.ForeignKey('usuarios.id'))
