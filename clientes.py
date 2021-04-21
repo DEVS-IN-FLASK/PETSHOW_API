@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from sqlalchemy.exc import IntegrityError
-from models import Cliente, Telefone, Endereco, Pet, Pets_Has_Clientes
+from models import Cliente, Telefone, Endereco, Pet, Pets_Has_Clientes, Animal
 from petshow_api import db
 
 clientes_app = Blueprint('clientes', __name__,url_prefix='/clientes')
@@ -20,6 +20,12 @@ def clientes():
     if request.method == 'POST':
         dados = request.get_json()
 
+        number_animais = len(Animal.query.all())
+        if number_animais < 2:
+            db.session.add(Animal(animal='cachorro'))
+            db.session.add(Animal(animal='gato'))
+            db.session.commit()
+        
         if not dados:
             return jsonify({'erro':'Os dados do cliente não foram inseridos'})
         try:    
