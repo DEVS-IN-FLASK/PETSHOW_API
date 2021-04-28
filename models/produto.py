@@ -1,5 +1,5 @@
 from petshow_api import db
-#from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey
 #from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 
