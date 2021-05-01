@@ -17,10 +17,9 @@ def novo():
     if not novo_pedido:
         return jsonify({'erro':'Os dados do pedido não foram inseridos'})
     try:
-        p = jsonify([{"json de dados":"Wed Apr 21 2021 01:10:20 GMT-0300 (Horário Padrão de Brasília)","observacao":"obs","situacao":1,"usuario_id":3,"cliente_id":1}])
         
-        #Pedido_Produto(observacao=novo_pedido.get('observacao'),situacao=novo_pedido.get('situacao'),
-        #    situacao_id=novo_pedido.get('situacao_id'),usuario_id=novo_pedido.get('usuario_id'),cliente_id=novo_pedido.get('cliente_id'))
+        p = Pedido_Produto(observacao=novo_pedido.get('observacao'),situacao=novo_pedido.get('situacao'),
+            situacao_id=novo_pedido.get('situacao_id'),usuario_id=novo_pedido.get('usuario_id'),cliente_id=novo_pedido.get('cliente_id'))
         db.session.add(p)
         db.session.commit()
         return jsonify(p.serialize())
