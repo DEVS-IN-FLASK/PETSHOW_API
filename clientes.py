@@ -17,15 +17,13 @@ def pets():
     
 @clientes_app.route('/',methods=['GET', 'POST'])
 def clientes():
+    number_animais = len(Animal.query.all())
+    if number_animais < 2:
+        db.session.add(Animal(animal='cachorro'))
+        db.session.add(Animal(animal='gato'))
+        db.session.commit()
     if request.method == 'POST':
         dados = request.get_json()
-
-        number_animais = len(Animal.query.all())
-        if number_animais < 2:
-            db.session.add(Animal(animal='cachorro'))
-            db.session.add(Animal(animal='gato'))
-            db.session.commit()
-        
         if not dados:
             return jsonify({'erro':'Os dados do cliente não foram inseridos'})
         try:    

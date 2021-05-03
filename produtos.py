@@ -22,6 +22,7 @@ def produtos():
         if not dados:
             return jsonify({'erro':'Os dados do produto não foram inseridos'})
         try:
+            
             produto = Produto(nome=dados['nome'],descricao=dados['descricao'], modelo=dados['modelo'],
             cod_barras=dados['cod_barras'], porcentagem=dados['porcentagem'],
             preco_custo=dados['preco_custo'], preco_venda=dados['preco_venda'],

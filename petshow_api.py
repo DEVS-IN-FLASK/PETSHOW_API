@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for
 #from flask.globals import current_app
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS, cross_origin
+#from flask_cors import CORS, cross_origin
 import requests
 
 db = SQLAlchemy()
@@ -9,7 +9,7 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    CORS(app, support_credentials=True)
+#    CORS(app, support_credentials=True)
 
     '''Banco SQlite local'''
 #    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///petdb.sqlite'
@@ -19,9 +19,11 @@ def create_app():
     '''Banco Postgres Heroku (ativo)'''
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+psycopg2://nuenrexvutummr:e8af86aaf4e99a011914e701532b0fc9bb7b9588b34158cce47e2e921f2ed0c7@ec2-52-21-252-142.compute-1.amazonaws.com:5432/dse9kl9ve57mv'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-    '''Aplicação automatica de alterações no banco de dados'''
-    app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+    
+    '''URL localhost'''
+    #url = 'http://127.0.0.1:5000/'
+    '''URL Heroku'''
+    url = 'https://petshow-api.herokuapp.com/'
 
     from usuarios import usuarios_app
     app.register_blueprint(usuarios_app)
@@ -31,11 +33,15 @@ def create_app():
 
     from clientes import clientes_app
     app.register_blueprint(clientes_app)
-
+    
     from pedidos import pedidos_app
     app.register_blueprint(pedidos_app)
+    
+    from testes import testes_app
+    app.register_blueprint(testes_app)
 
     db.init_app(app)
+    
  
 
     with app.app_context():
@@ -47,20 +53,17 @@ def create_app():
         def all():
         
 #            users = requests.get("http://127.0.0.1:5000/usuarios/").json()
-            users = requests.get("https://petshow-api.herokuapp.com/usuarios/").json()
+            users = requests.get(f"{url}usuarios/").json()
             return render_template('index.html', usuario = users)
      
-#            prods = requests.get("http://127.0.0.1:5000/produtos/").json()
-            prods = requests.get("https://petshow-api.herokuapp.com/produtos/").json()
+            prods = requests.get(f"{url}produtos/").json()
             return render_template('index.html', produto = prods)
 
-#            cli = requests.get("http://127.0.0.1:5000/clientes/").json()
-            cli = requests.get("https://petshow-api.herokuapp.com/clientes").json()
+            cli = requests.get(f"{url}clientes").json()
             return render_template('index.html', cliente = cli)
-
-#            ped = requests.get("http://127.0.0.1:5000/pedidos/").json()
-            cli = requests.get("https://petshow-api.herokuapp.com/pedidos").json()
-            return render_template('index.html', pedido = ped)
+        
+            ped = requests.get(f"{url}pedidos").json()
+            return render_template('index.html', cliente = ped)
 
         
         return app
