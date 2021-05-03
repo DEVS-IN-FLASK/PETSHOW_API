@@ -4,9 +4,10 @@ from sqlalchemy import ForeignKey
 class Pedido_Produto(db.Model):
 
     __tablename__="pedido_produto"
-    id = db.Column(db.Integer, primary_key=True,nullable=True,autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True,nullable=False,autoincrement=True)
     total = db.Column(db.Float)
     preco = db.Column(db.Float)
+    quantidade = db.Column(db.Integer)
     pedido_id = db.Column(db.Integer,db.ForeignKey('pedidos.id'))
     produto_id = db.Column(db.Integer,db.ForeignKey('produtos.id'))
 

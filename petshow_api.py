@@ -19,6 +19,11 @@ def create_app():
     '''Banco Postgres Heroku (ativo)'''
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+psycopg2://nuenrexvutummr:e8af86aaf4e99a011914e701532b0fc9bb7b9588b34158cce47e2e921f2ed0c7@ec2-52-21-252-142.compute-1.amazonaws.com:5432/dse9kl9ve57mv'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
+    '''URL localhost'''
+    #url = 'http://127.0.0.1:5000/'
+    '''URL Heroku'''
+    url = 'https://petshow-api.herokuapp.com/'
 
     from usuarios import usuarios_app
     app.register_blueprint(usuarios_app)
@@ -28,8 +33,15 @@ def create_app():
 
     from clientes import clientes_app
     app.register_blueprint(clientes_app)
+    
+    from pedidos import pedidos_app
+    app.register_blueprint(pedidos_app)
+    
+    from testes import testes_app
+    app.register_blueprint(testes_app)
 
     db.init_app(app)
+    
  
 
     with app.app_context():
@@ -41,14 +53,17 @@ def create_app():
         def all():
         
 #            users = requests.get("http://127.0.0.1:5000/usuarios/").json()
-            users = requests.get("https://petshow-api.herokuapp.com/usuarios/").json()
+            users = requests.get(f"{url}usuarios/").json()
             return render_template('index.html', usuario = users)
      
-            prods = requests.get("https://petshow-api.herokuapp.com/produtos/").json()
+            prods = requests.get(f"{url}produtos/").json()
             return render_template('index.html', produto = prods)
 
-            cli = requests.get("https://petshow-api.herokuapp.com/clientes").json()
+            cli = requests.get(f"{url}clientes").json()
             return render_template('index.html', cliente = cli)
+        
+            ped = requests.get(f"{url}pedidos").json()
+            return render_template('index.html', cliente = ped)
 
         
         return app
