@@ -3,6 +3,7 @@ from sqlalchemy.exc import IntegrityError
 from models import Cliente, Telefone, Endereco, Pet, Pets_Has_Clientes, Animal, Pedido, Usuario, Marca, Produto, Tamanho, Situacao, Pedido_Produto
 from petshow_api import db
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 testes_app = Blueprint('testes', __name__,url_prefix='/testes')
 
@@ -11,12 +12,12 @@ def preenche_campos():
     usuarios = Usuario.query.all()
     if len(usuarios) == 0:
         dados = [
-            ['Admin', 'admin', 'senha', 'admin'],
+            ['Admin', 'admin', 'senha', 'gerente'],
             ['Jose', 'jose', 'senha', 'funcionario'],
             ['Maria', 'maria', 'senha', 'gerente']
         ]
         for x in dados:
-            usuario = Usuario(nome=x[0], login=x[1], senha=x[2], tipo=x[3])
+            usuario = Usuario(nome=x[0], login=x[1], senha=generate_password_hash(x[2]), tipo=x[3])
             db.session.add(usuario)
         db.session.commit()
 

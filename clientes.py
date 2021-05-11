@@ -3,11 +3,15 @@ from sqlalchemy.exc import IntegrityError
 from models import Cliente, Telefone, Endereco, Pet, Pets_Has_Clientes, Animal
 from petshow_api import db
 
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+
 clientes_app = Blueprint('clientes', __name__,url_prefix='/clientes')
 
 # inclusão e consulta de clientes e pets
 
 @clientes_app.route('/pets/')
+@jwt_required()
 def pets():
     try:
         pets = Pet.query.all()
@@ -16,6 +20,7 @@ def pets():
         return jsonify({'erro':'Nao foi possivel acessar os dados'})
     
 @clientes_app.route('/',methods=['GET', 'POST'])
+@jwt_required()
 def clientes():
     number_animais = len(Animal.query.all())
     if number_animais < 2:
@@ -118,6 +123,7 @@ def clientes():
         except Exception:
             return jsonify({'erro':'Nao foi possivel acessar os dados'})
 
+'''
 # remocao de cliente, telefone, endereco e relacionamento com pet
 # Não recomendável excluir um cliente - seguir o mesmo princípio do usuário, mantendo-o na base
 @clientes_app.route('/<id>/remover/', methods=['DELETE'])
@@ -141,8 +147,10 @@ def remover_cliente(id):
     except Exception:
         db.session.rollback()
         return jsonify({'erro':'Nao foi possivel acessar os dados'})
+'''
 
 @clientes_app.route('/<id>/alterar/', methods=['PUT'])
+@jwt_required()
 def alterar_cliente(id):
     dados = request.get_json()
     if not dados:

@@ -15,5 +15,6 @@ class Usuario(db.Model):
 #    pedidos = db.relationship('Pedido',backref='pedidos')
 #    produtos = db.relationship('Produto',backref='produtos')
 
+
     def serialize(self):
         return {'id':self.id,'nome':self.nome,'login':self.login,'tipo':self.tipo }

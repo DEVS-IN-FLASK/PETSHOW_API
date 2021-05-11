@@ -4,11 +4,22 @@ from flask_sqlalchemy import SQLAlchemy
 #from flask_cors import CORS, cross_origin
 import requests
 
+
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
+
 db = SQLAlchemy()
+#from usuarios import authenticate, identity
+
 #migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
+    app.config['SECRET_KEY'] = 'devsinflaskpetshowapi'
+    jwt = JWTManager(app)
+    
 #    CORS(app, support_credentials=True)
 
     '''Banco SQlite local'''
@@ -21,7 +32,7 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
     '''URL localhost'''
-    #url = 'http://127.0.0.1:5000/'
+#    url = 'http://127.0.0.1:5000/'
     '''URL Heroku'''
     url = 'https://petshow-api.herokuapp.com/'
 
@@ -39,6 +50,7 @@ def create_app():
     
     from testes import testes_app
     app.register_blueprint(testes_app)
+    
 
     db.init_app(app)
     
