@@ -25,10 +25,10 @@ def create_app():
     '''URL Heroku'''
     url = 'https://petshow-api.herokuapp.com/'
 
-    from usuarios import usuarios_app
+    from blueprints.usuarios import usuarios_app
     app.register_blueprint(usuarios_app)
 
-    from produtos import produtos_app
+    from blueprints.produtos import produtos_app
     app.register_blueprint(produtos_app)
 
     from blueprints.clientes import clientes_app
