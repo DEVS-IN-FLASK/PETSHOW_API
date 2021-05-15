@@ -4,12 +4,16 @@ from models import Produto, Cliente, Usuario, Pedido, Pedido_Produto, Marca, Tam
 from petshow_api import db
 from datetime import datetime
 
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+
 pedidos_app = Blueprint('pedidos', __name__,url_prefix='/pedidos')
 
 
 # Rotas para cadastro de pedidos
 
 @pedidos_app.route('/',methods=['GET','POST'])
+@jwt_required()
 def pedidos():
     if request.method == 'GET':
         try:
@@ -35,7 +39,10 @@ def pedidos():
         if not dados:
             return jsonify({'erro':'Os dados do pedido não foram inseridos'})
         try:
-            pedido = Pedido(cliente_id=dados['cliente_id'], usuario_id=dados['usuario_id'], observacao=dados['observacao'],
+            current_user = get_jwt_identity()
+            user_id = Usuario.query.filter_by(login=login).first().id
+            
+            pedido = Pedido(cliente_id=dados['cliente_id'], usuario_id=user_id, observacao=dados['observacao'],
                             situacao_id=1, data=datetime.utcnow())
             db.session.add(pedido)
             db.session.commit()
@@ -53,6 +60,7 @@ def pedidos():
             return jsonify({'erro':'Os dados do pedido nao puderam ser inseridos'})
 
 @pedidos_app.route('/<id>/situacao/', methods=['PUT'])
+@jwt_required()
 def alterar_situacao(id):
     dados = request.get_json()
     if not dados:
@@ -89,10 +97,11 @@ def alterar_situacao(id):
             return jsonify({'sucesso':'Pedido cancelado'})
     except ValueError as e:
         return jsonify({'erro':e.args})
-    except Exception as e:
+    except Exception:
         return jsonify({'erro':"Nao foi possivel acessar os dados"})
 
 @pedidos_app.route('/<id>/itens/', methods=['PUT'])
+@jwt_required()
 def alterar_itens(id):
     dados = request.get_json()
     if not dados:
@@ -116,7 +125,6 @@ def alterar_itens(id):
             raise ValueError('Pedido nao pode ser alterado')
     except ValueError as e:
         return jsonify({'erro':e.args})
-    except Exception as e:
-        print(e)
+    except Exception:
         return jsonify({'erro':"Nao foi possivel acessar os dados"})
 
