@@ -31,13 +31,13 @@ def create_app():
     from produtos import produtos_app
     app.register_blueprint(produtos_app)
 
-    from clientes import clientes_app
+    from blueprints.clientes import clientes_app
     app.register_blueprint(clientes_app)
     
-    from pedidos import pedidos_app
+    from blueprints.pedidos import pedidos_app
     app.register_blueprint(pedidos_app)
     
-    from testes import testes_app
+    from blueprints.testes import testes_app
     app.register_blueprint(testes_app)
 
     db.init_app(app)
