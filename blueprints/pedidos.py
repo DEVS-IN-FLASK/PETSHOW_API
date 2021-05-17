@@ -39,11 +39,11 @@ def pedidos():
         if not dados:
             return jsonify({'erro':'Os dados do pedido não foram inseridos'})
         try:
-            current_user = get_jwt_identity()
-            user_id = Usuario.query.filter_by(login=login).first().id
-            
-            pedido = Pedido(cliente_id=dados['cliente_id'], usuario_id=user_id, observacao=dados['observacao'],
-                            situacao_id=1, data=datetime.utcnow())
+#            current_user = get_jwt_identity()
+#            user_id = Usuario.query.filter_by(login=login).first().id
+
+            pedido = Pedido(cliente_id=dados['cliente_id'], usuario_id=dados['usuario_id'], observacao=dados['observacao'],
+                            situacao_id=1, data=datetime.utcnow())  
             db.session.add(pedido)
             db.session.commit()
             pedido_id = pedido.id
