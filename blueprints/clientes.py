@@ -40,9 +40,12 @@ def clientes():
 
             try:
                 cliente = Cliente(nome=dados['nome'], email=dados['email'], cpf=dados['cpf'], endereco_id=end_id)
-                db.session.add(cliente)
-                db.session.commit()
-                cli_id = cliente.id
+                if len(cliente.nome) < 4 :
+                    raise Exception
+                else:
+                    db.session.add(cliente)
+                    db.session.commit()
+                    cli_id = cliente.id
 
                 try:
                     tels = dados['telefones']
