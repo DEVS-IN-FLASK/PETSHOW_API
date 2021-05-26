@@ -48,7 +48,7 @@ def autentica_usuario():
         user = Usuario.query.filter_by(login=login).first()
         if user.tipo != 'inativo':
             if check_password_hash(user.senha, senha):
-                access_token = create_access_token(identity=login, expires_delta=datetime.timedelta(minutes=10))
+                access_token = create_access_token(identity=login, expires_delta=datetime.timedelta(minutes=30))
                 return jsonify({'sucesso':'autenticado', 'access_token': access_token})
             else:
                 return jsonify({'erro':"Usuario ou senha incorretos"})

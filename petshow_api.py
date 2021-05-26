@@ -39,6 +39,9 @@ def create_app():
     from blueprints.testes import testes_app
     app.register_blueprint(testes_app)
     
+    from blueprints.relatorios import relatorios_app
+    app.register_blueprint(relatorios_app)
+    
 
     db.init_app(app)
     
