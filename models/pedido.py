@@ -1,5 +1,6 @@
 from petshow_api import db
 from sqlalchemy import ForeignKey
+from flask_sqlalchemy import SQLAlchemy
 
 class Pedido(db.Model):
 
