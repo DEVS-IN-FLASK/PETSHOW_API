@@ -62,21 +62,20 @@ def alterar_produto(id):
     if not dados:
         return jsonify({'erro':'Os dados do produto não foram inseridos'})
     try:
-        produto = Produto(nome=dados['nome'],descricao=dados['descricao'], modelo=dados['modelo'],
-            cod_barras=dados['cod_barras'], porcentagem=dados['porcentagem'],
-            preco_custo=dados['preco_custo'], preco_venda=dados['preco_venda'], quantidade=dados['quantidade'], foto=dados['foto'], marca_id=dados['marca_id'], tamanho_id=dados['tamanho_id'], animal_id=dados['animal_id'], usuario_id=dados['usuario_id'])
-        produto.nome = dados['nome']
-        produto.descricao = dados['descricao']
-        produto.modelo = modelo=dados['modelo']
-        produto.cod_barras = cod_barras=dados['cod_barras']
+        print(dados)
+        produto = Produto.query.filter_by(id=id).first()
+        # produto.nome = dados['nome']
+        # produto.descricao = dados['descricao']
+        # produto.modelo = modelo=dados['modelo']
+        # produto.cod_barras = cod_barras=dados['cod_barras']
         produto.porcentagem = porcentagem=dados['porcentagem']
         produto.preco_custo = preco_custo=dados['preco_custo']
         produto.preco_venda = preco_venda=dados['preco_venda']
         produto.quantidade = dados['quantidade']
         produto.foto = dados['foto']
-        produto.marca_id = dados['marca_id']
-        produto.tamanho_id = dados['tamanho_id']
-        produto.animal_id = animal_id=dados['animal_id']
+        # produto.marca_id = dados['marca_id']
+        # produto.tamanho_id = dados['tamanho_id']
+        # produto.animal_id = animal_id=dados['animal_id']
         produto.usuario_id=dados['usuario_id']
         db.session.commit()
         return jsonify({'sucesso':'Produto alterado'})

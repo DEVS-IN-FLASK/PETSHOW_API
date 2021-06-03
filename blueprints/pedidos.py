@@ -75,7 +75,7 @@ def alterar_situacao(id):
             pedido.situacao_id = situacao
             db.session.commit()
             return jsonify({'sucesso':'Pedido alterado'})
-        if situacao == 2:
+        elif situacao == 2:
             itens = db.session.query(Pedido_Produto, Produto).filter(Pedido_Produto.produto_id == Produto.id, Pedido_Produto.pedido_id == id).all()
             for item in itens:
                 if item.Produto.quantidade >= item.Pedido_Produto.quantidade:
@@ -88,6 +88,8 @@ def alterar_situacao(id):
             return jsonify({'sucesso':'Pedido concluido'})
         elif situacao == 3:
             itens = db.session.query(Pedido_Produto, Produto).filter(Pedido_Produto.produto_id == Produto.id, Pedido_Produto.pedido_id == id).all()
+            print(itens)
+            print(situacao_atual)
             if situacao_atual == 2:
                 for item in itens:
                     item.Produto.quantidade += item.Pedido_Produto.quantidade
