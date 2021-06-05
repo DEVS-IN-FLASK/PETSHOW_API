@@ -16,7 +16,7 @@ class Produto(db.Model):
     preco_custo = db.Column(db.Float, default=0)
     preco_venda = db.Column(db.Float, default=0)
     quantidade = db.Column(db.Integer,default=0)
-    foto = db.Column(db.String(255))
+    foto = db.Column(db.String(255), nullable=True)
     marca_id = db.Column(db.Integer,db.ForeignKey('marcas.id'))
     animal_id = db.Column(db.Integer,db.ForeignKey('animais.id'))
     tamanho_id = db.Column(db.Integer,db.ForeignKey('tamanhos.id'))
